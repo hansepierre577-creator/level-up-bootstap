@@ -1,0 +1,86 @@
+body {
+    margin: 0;
+    font-family: 'Playfair Display', serif;
+    background-color: #D4AF37;
+}
+
+.imageLevelUp {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 1rem;
+}
+
+.containerp {
+    max-width: 760px;
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 30px;
+    padding: 3rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.16);
+}
+
+.imageLevelUp h1 {
+    margin-bottom: 1.5rem;
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    color: #000;
+    text-align: center;
+}
+
+.imageLevelUp p {
+    color: #111;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    letter-spacing: 0.02em;
+    text-align: justify;
+}
+
+@media (max-width: 575.98px) {
+    .imageLevelUp {
+        padding: 2rem 0.75rem;
+    }
+
+    .containerp {
+        padding: 2rem;
+    }
+
+    .imageLevelUp h1 {
+        font-size: 2.25rem;
+    }
+}
+
+.navbarcommandez {
+    gap: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.8);
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+.navbarcommandez a {
+    text-decoration: none;
+    border-radius: 20px;
+    color: hsla(48, 17%, 88%, 0.986);
+    border: 1px solid #000;
+    background: #000;
+    padding: 0.7rem 1rem;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.navbarcommandez a:hover,
+.navbarcommandez a:focus {
+    background: #f5e84c;
+    color: #000;
+}
+
+@media (max-width: 767.98px) {
+    .navbarcommandez {
+        padding: 0.75rem 0.5rem;
+    }
+}

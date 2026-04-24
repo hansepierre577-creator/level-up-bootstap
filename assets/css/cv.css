@@ -1,0 +1,19 @@
+header{
+background-color: gold;
+
+border-radius: 10px;
+}
+
+p,li,h2{
+    color: rgb(2, 2, 2);
+}
+
+body{
+    
+}
+
+hr{
+    border: none;
+   border-top: 2px solid gold;
+   opacity: 1;
+}   
