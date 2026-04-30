@@ -41,7 +41,7 @@ html {
 .hero-banner {
     position: relative;
     min-height: 420px;
-    background-image: url("assets/img/banner.jpg");
+    background-image: url("../level-up-bootstap/assets/img/banner.jpg");
     background-repeat: repeat-x;
     background-size: auto 100%;
     background-position: center center;
