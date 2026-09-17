@@ -1,0 +1,19 @@
+.theme-toggle-floating {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1050;
+    width: 2.75rem;
+    height: 2.75rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+}
+
+body.dark-mode .theme-toggle-floating {
+    background-color: #f8f9fa;
+    color: #111;
+    border-color: #f8f9fa;
+}

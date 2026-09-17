@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level-Up Industry</title>
+    <link rel="stylesheet" href="../lib/bootstrap-5.3.8-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../css/levelup.css">
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+</head>
+<body>
+
+    
+    <header id="Accueil" class="fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+            <div class="container-fluid">
+                <a class="navbar-brand d-flex align-items-center" href="levelup.html">
+                    <img src="../img/levelupindustry.JPEG" alt="Logolevelup" class="levelup">
+                    <span class="ms-2 text-uppercase fw-bold">Level-Up Industry</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <!-- Dark Mode Toggle -->
+                    <button id="darkModeToggle" class="btn btn-link text-white me-2" aria-label="Toggle dark mode">
+                        <i class="bi bi-moon-fill"></i>
+                    </button>
+
+                    <!-- Language Dropdown -->
+                    <div class="dropdown me-2">
+                        <button class="btn btn-link text-white dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-translate"></i> <span id="currentLanguageText">Français</span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="languageDropdown">
+                            <li><a class="dropdown-item" href="#" data-lang="fr">Français</a></li>
+                            <li><a class="dropdown-item" href="#" data-lang="en">English</a></li>
+                            <li><a class="dropdown-item" href="#" data-lang="ht">Kreyòl Ayisyen</a></li>
+                            <li><a class="dropdown-item" href="#" data-lang="es">Español</a></li>
+                            <li><a class="dropdown-item" href="#" data-lang="pt">Português</a></li>
+                            <li><a class="dropdown-item" href="#" data-lang="de">Deutsch</a></li>
+                        </ul>
+                    </div>
+
+
+                                        <form id="searchForm" class="d-flex ms-auto me-lg-3 my-2 my-lg-0 align-items-center" role="search">
+                                                <div class="search-wrapper me-2 position-relative">
+                                                    <input id="searchInput" class="form-control form-control-sm" type="search" placeholder="Rechercher" aria-label="Rechercher" autocomplete="off">
+                                                    <div id="suggestionBox" class="search-suggestions d-none"></div>
+                                                </div>
+                                                <button id="searchSubmit" class="btn btn-outline-warning btn-sm" type="submit">OK</button>
+                                                <button id="searchClear" class="btn btn-outline-light btn-sm ms-2 d-none" type="button">Effacer</button>
+                                                <button id="searchPrev" class="btn btn-outline-light btn-sm ms-2 d-none" type="button" title="Précédent">◀</button>
+                                                <button id="searchNext" class="btn btn-outline-light btn-sm ms-1 d-none" type="button" title="Suivant">▶</button>
+                                        </form>
+                                        <div class="d-flex align-items-center ms-2">
+                                            <div id="searchResult" class="text-warning small align-self-center d-none">0 résultat</div>
+                                            <div class="ms-2 text-white small d-none" id="searchControls">
+                                                <div class="form-check form-check-inline text-white small me-2">
+                                                    <input class="form-check-input" type="checkbox" id="matchCase" data-i18n-label="respecterCasse">
+                                                    <label class="form-check-label" for="matchCase" data-i18n="respecterCasse">Respecter la casse</label>
+                                                </div>
+                                                <div class="form-check form-check-inline text-white small">
+                                                    <input class="form-check-input" type="checkbox" id="wholeWord" data-i18n-label="motEntier">
+                                                    <label class="form-check-label" for="wholeWord" data-i18n="motEntier">Mot entier</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                    <ul class="navbar-nav ms-lg-3">
+                        <li class="nav-item">
+                            <a class="nav-link" href="levelup.html" data-i18n="accueil">Accueil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Commandez.html" data-i18n="produits">Commandez</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html" data-i18n="contact">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Apropos.html" data-i18n="apropos">A propos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link position-relative" href="../../paiement.html" data-i18n="panier">
+                                Panier
+                                <span id="nav-cart-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark d-none">0</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="login.html" data-i18n="connexion"><i class="bi bi-person-fill"></i> Connexion</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+<main>
+    <section class="hero-section">
+        <div class="hero-banner position-relative overflow-hidden">
+            <div class="hero-text d-flex flex-column justify-content-center align-items-center text-center">
+                <h1 data-i18n="bienvenue">Bienvenue Sur Le Site De Level-Up Industry</h1>
+                <h3 data-i18n="slogan">Pour Des Accessoires A la Hauteur De vos Standards</h3>
+                <div class="d-flex justify-content-center mt-4">
+                    <a href="../html/Commandez.html" class="btn-hero" data-i18n="commanderMaintenant">COMMANDEZ DÈS MAINTENANT</a>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<section class="home-product-carousel-wrap" aria-label="Galerie de produits">
+    <div class="section-showcase-head">
+        <span>Nos bestsellers</span>
+        <h2>Des pièces qui définissent votre style</h2>
+    </div>
+
+    <div class="home-product-carousel" data-carousel>
+        <article class="carousel-slide active">
+            <img src="../img/trousseencuirnoir.jpg" alt="Trousse en cuir noir" />
+            <div class="carousel-caption">
+                <p>Accessoires premium</p>
+                <h3>Trousse en cuir noir</h3>
+            </div>
+        </article>
+
+        <article class="carousel-slide">
+            <img src="../img/jacketencuir.jpg" alt="Veste en cuir" />
+            <div class="carousel-caption">
+                <p>Collection signature</p>
+                <h3>Veste en cuir</h3>
+            </div>
+        </article>
+
+        <article class="carousel-slide">
+            <img src="../img/style.jpg" alt="Ensemble premium" />
+            <div class="carousel-caption">
+                <p>Style urbain</p>
+                <h3>Look complet</h3>
+            </div>
+        </article>
+
+        <article class="carousel-slide">
+            <img src="../img/lunette2.jpg" alt="Lunettes fashion" />
+            <div class="carousel-caption">
+                <p>Essentiel</p>
+                <h3>Lunettes fashion</h3>
+            </div>
+        </article>
+
+        <article class="carousel-slide">
+            <img src="../img/Classe3.jpg" alt="Combo premium" />
+            <div class="carousel-caption">
+                <p>Le meilleur de la maison</p>
+                <h3>Combo premium</h3>
+            </div>
+        </article>
+
+        <div class="carousel-dots" aria-label="Navigation du carrousel">
+            <button type="button" class="carousel-dot active" aria-label="Afficher la slide 1" data-slide="0"></button>
+            <button type="button" class="carousel-dot" aria-label="Afficher la slide 2" data-slide="1"></button>
+            <button type="button" class="carousel-dot" aria-label="Afficher la slide 3" data-slide="2"></button>
+            <button type="button" class="carousel-dot" aria-label="Afficher la slide 4" data-slide="3"></button>
+            <button type="button" class="carousel-dot" aria-label="Afficher la slide 5" data-slide="4"></button>
+        </div>
+    </div>
+</section>
+
+<footer class="bg-dark text-light pt-5 pb-3">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 mb-4">
+        <h5 class="text-uppercase mb-3" style="color: #c5a059;" data-i18n="footerTitle">Level-Up Industry</h5>
+        <p data-i18n="footerDescription">L'excellence en matière d'accessoires, Nous redéfinissons vos standards avec élégance et professionnalisme.</p>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <h5 class="text-uppercase mb-3" data-i18n="navigation">Navigation</h5>
+        <ul class="list-unstyled ps-0">
+          <li class="pt-2 "><a href="levelup.html" class="text-light text-decoration-none  fw-bold " data-i18n="accueil">Accueil</a></li>
+          <li class="pt-2 "><a href="Commandez.html" class="text-light text-decoration-none  fw-bold" data-i18n="commandez">Commandez</a></li>
+          <li class="pt-2 "><a href="../../paiement.html" class="text-light text-decoration-none  fw-bold" data-i18n="panier">Panier</a></li>
+          <li class="pt-2 "><a href="contact.html" class="text-light text-decoration-none  fw-bold" data-i18n="contact">Contact</a></li>
+          <li class="pt-2 "><a href="login.html" class="text-light text-decoration-none  fw-bold" data-i18n="connexion">Connexion</a></li>
+          <li class="pt-2"><a href="Apropos.html" class="text-light text-decoration-none  fw-bold " data-i18n="apropos">À propos</a></li>
+        </ul>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <h5 class="text-uppercase mb-3" data-i18n="contactezNous">Contactez-nous</h5>
+        <p><i class="bi bi-envelope"></i> info@levelup-industry.com</p>
+        <p><i class="bi bi-whatsapp"></i> +509 40-357607 / +509 44-238700</p>
+        <hr class="border-secondary">
+        <small class="text-secondary ">
+  &copy; 2026 Level-Up Industry <br>
+  Conçu par <strong>Pierre Hanse Louidjy</strong>
+</small>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="../lib/bootstrap-5.3.8-dist/js/bootstrap.bundle.js"></script>
+<script src="../js/translations.js"></script>
+<script src="../js/search.js"></script>
+
+<script>
+</script>
+<script src="assets/js/api-config.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const carousel = document.querySelector('[data-carousel]');
+    if (carousel) {
+        const slides = Array.from(carousel.querySelectorAll('.carousel-slide'));
+        const dots = Array.from(carousel.querySelectorAll('.carousel-dot'));
+        let index = 0;
+        let autoRotate;
+
+        function showSlide(nextIndex) {
+            index = (nextIndex + slides.length) % slides.length;
+
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+        }
+
+        function startCarousel() {
+            clearInterval(autoRotate);
+            autoRotate = setInterval(() => {
+                showSlide(index + 1);
+            }, 4500);
+        }
+
+        dots.forEach((dot) => {
+            dot.addEventListener('click', () => {
+                showSlide(Number(dot.dataset.slide));
+                startCarousel();
+            });
+        });
+
+        carousel.addEventListener('mouseenter', () => clearInterval(autoRotate));
+        carousel.addEventListener('mouseleave', startCarousel);
+
+        showSlide(0);
+        startCarousel();
+    }
+
+    // --- Logique pour mettre à jour le compteur du panier dans la navbar ---
+    const navCartCount = document.getElementById('nav-cart-count');
+    const storageKey = 'levelup_cart';
+
+    function updateNavCartCount() {
+        const cart = JSON.parse(localStorage.getItem(storageKey) || '{}');
+        const totalItems = Object.values(cart).reduce((sum, item) => sum + item.qty, 0);
+        
+        if (totalItems > 0) {
+            navCartCount.textContent = totalItems;
+            navCartCount.classList.remove('d-none'); // Montre le badge
+        } else {
+            navCartCount.classList.add('d-none');
+        }
+    }
+
+    // Mettre à jour au chargement de la page
+    updateNavCartCount();
+
+    // Mettre à jour quand le storage change (depuis un autre onglet)
+    window.addEventListener('storage', (e) => {
+        if (e.key === storageKey) {
+            updateNavCartCount();
+        }
+    });
+
+});
+</script>
+<script src="../js/theme.js"></script>
+</body>
+</html>

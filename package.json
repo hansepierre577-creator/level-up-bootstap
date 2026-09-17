@@ -1,0 +1,32 @@
+{
+  "name": "level-up-backend",
+  "version": "1.0.0",
+  "description": "Backend API for Level-Up Industry e-commerce site",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "check": "node --check server.js"
+  },
+  "keywords": [
+    "level-up",
+    "ecommerce",
+    "express",
+    "stripe"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "author": "Level-Up",
+  "license": "MIT",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.116.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-rate-limit": "^7.5.0",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "stripe": "^16.9.0"
+  }
+}

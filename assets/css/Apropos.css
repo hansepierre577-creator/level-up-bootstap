@@ -2,7 +2,12 @@ body {
     margin: 0;
     font-family: 'Playfair Display', serif;
     background-color: #D4AF37;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
+body.dark-mode {
+    background-color: #1a1a1a;
+}
+
 
 .imageLevelUp {
     min-height: 100vh;
@@ -21,12 +26,20 @@ body {
     padding: 3rem;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.16);
 }
+body.dark-mode .containerp {
+    background-color: #2c2c2c;
+    color: #e9ecef;
+    border-color: #444;
+}
 
 .imageLevelUp h1 {
     margin-bottom: 1.5rem;
     font-size: clamp(2.5rem, 4vw, 4rem);
     color: #000;
     text-align: center;
+}
+body.dark-mode .imageLevelUp h1 {
+    color: #e9ecef;
 }
 
 .imageLevelUp p {
@@ -35,6 +48,9 @@ body {
     line-height: 1.8;
     letter-spacing: 0.02em;
     text-align: justify;
+}
+body.dark-mode .imageLevelUp p {
+    color: #ccc;
 }
 
 @media (max-width: 575.98px) {
@@ -78,6 +94,11 @@ body {
     background: #f5e84c;
     color: #000;
 }
+body.dark-mode .navbarcommandez {
+    background: rgba(0, 0, 0, 0.9);
+    border-top: 1px solid #444;
+}
+
 
 @media (max-width: 767.98px) {
     .navbarcommandez {

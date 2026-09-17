@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paiement - Level-Up</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Fichier CSS pour le thème "Golden" -->
+    <link rel="stylesheet" href="paiement.css">
+    <link rel="stylesheet" href="assets/css/theme.css">
+</head>
+<style>
+    #payment-element { margin-bottom: 1rem; }
+</style>
+<body>
+    <button id="darkModeToggle" class="theme-toggle-floating btn btn-dark" type="button" aria-label="Activer le mode sombre" title="Mode sombre">
+        <i class="bi bi-moon-fill"></i>
+    </button>
+
+    <!-- =============================================================== -->
+    <!--                      Ba Navigasyon (Menu)                         -->
+    <!-- =============================================================== -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark-golden sticky-top" data-i18n-prefix="navbar">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary-golden" href="assets/html/levelup.html" data-i18n="brand">LEVEL-UP</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="assets/html/levelup.html" data-i18n="accueil">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="assets/html/Commandez.html" data-i18n="produits">Produits</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="assets/html/contact.html" data-i18n="contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="assets/html/login.html" data-i18n="connexion"><i class="bi bi-person-fill"></i> Connexion</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" data-i18n="panier">
+                            <i class="bi bi-cart-fill"></i> Panier
+                            <span class="badge bg-primary-golden rounded-pill align-text-bottom">3</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        <div class="text-center mb-5">
+            <h1 class="fw-bold" data-i18n="pageTitle">Finaliser votre commande</h1>
+            <p class="text-muted" data-i18n="pageSubtitle">Vérifiez votre commande et choisissez un mode de paiement.</p>
+        </div>
+
+        <div class="row g-5">
+            <!-- Colonne Gauche: Résumé de la Commande -->
+            <div class="col-md-5 col-lg-4 order-md-last">
+                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-primary-golden" data-i18n="summaryTitle">Résumé de la commande</span>
+                    <span id="cart-item-count" class="badge bg-primary-golden rounded-pill">0</span>
+                </h4>
+                <ul id="order-summary-list" class="list-group mb-3">
+                    <!-- Les articles du panier seront injectés ici par JavaScript -->
+                    <li id="cart-empty-message" class="list-group-item" data-i18n="cartEmpty">Votre panier est vide.</li>
+                </ul>
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span data-i18n="totalLabel">Total (USD)</span>
+                        <strong id="total-amount">$0.00</strong>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Colonne Droite: Adresse et Paiement -->
+            <div class="col-md-7 col-lg-8">
+                <h4 class="mb-3" data-i18n="adresseLivraison">Adresse de Livraison</h4>
+                <form class="needs-validation" novalidate>
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <label for="firstName" class="form-label" data-i18n="prenom">Prénom</label>
+                            <input type="text" class="form-control" id="firstName" placeholder="" value="" required data-i18n-placeholder="prenomPlaceholder">
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label for="lastName" class="form-label" data-i18n="nom">Nom</label>
+                            <input type="text" class="form-control" id="lastName" placeholder="" value="" required data-i18n-placeholder="nomPlaceholder">
+                        </div>
+
+                        <div class="col-12">
+                            <label for="address" class="form-label" data-i18n="adresse">Adresse</label>
+                            <input type="text" class="form-control" id="address" placeholder="Adresse complète..." required data-i18n-placeholder="adressePlaceholder">
+                        </div>
+
+                        <div class="col-12">
+                            <label for="phone" class="form-label" data-i18n="telephone">Téléphone</label>
+                            <input type="tel" class="form-control" id="phone" placeholder="+509 XX XX XX XX" required data-i18n-placeholder="telephonePlaceholder">
+                        </div>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <h4 class="mb-3" data-i18n="methodePaiement">Méthode de Paiement</h4>
+
+                    <div class="my-3 payment-options">
+                        <div class="form-check">
+                            <input id="moncash" name="paymentMethod" type="radio" class="form-check-input" required checked data-i18n-label="moncash">
+                            <label class="form-check-label" for="moncash"><i class="bi bi-phone"></i> <span data-i18n="moncash">MonCash</span></label>
+                        </div>
+                        <div class="form-check">
+                            <input id="natcash" name="paymentMethod" type="radio" class="form-check-input" required data-i18n-label="natcash">
+                            <label class="form-check-label" for="natcash"><i class="bi bi-phone-fill"></i> <span data-i18n="natcash">Natcash</span></label>
+                        </div>
+                        <div class="form-check">
+                            <input id="credit" name="paymentMethod" type="radio" class="form-check-input" required data-i18n-label="creditCard">
+                            <label class="form-check-label" for="credit"><i class="bi bi-credit-card-fill"></i> <span data-i18n="creditCard">Carte de Crédit / Bancaire</span></label>
+                        </div>
+                    </div>
+
+                    <!-- Formulaire pour MonCash/Natcash -->
+                    <div id="mobilePaymentForm">
+                        <div class="row gy-3">
+                            <div class="col-md-6">
+                                <label for="mobile-phone" class="form-label" data-i18n="mobilePhoneLabel">Numéro de téléphone pour le paiement</label>
+                                <input type="tel" class="form-control" id="mobile-phone" placeholder="+509 XX XX XX XX" required data-i18n-placeholder="mobilePhonePlaceholder">
+                                <small class="text-muted" data-i18n="mobilePhoneHint">Vous recevrez une notification sur ce téléphone.</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Fòmilè pou Kat Kredi (Stripe) -->
+                    <div id="creditCardForm" class="d-none">
+                        <div id="payment-element"></div>
+                        <div id="payment-message" class="text-danger"></div>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <button id="pay-button" class="w-100 btn btn-primary-golden btn-lg" type="submit" data-i18n="payerMaintenant">Payer $0.00 maintenant</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Stripe.js -->
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="assets/js/api-config.js"></script>
+    <script src="assets/js/theme.js"></script>
+    
+    <!-- Script pour gérer le choix du paiement et le résumé de commande -->
+    <script>
+        const storageKey = 'levelup_cart'; // Déplacé en dehors de DOMContentLoaded pour être accessible partout
+
+        document.addEventListener('DOMContentLoaded', async function() {
+            const API_BASE = window.LEVELUP_API.apiUrl;
+            const stripePublicKey = window.LEVELUP_API.getStripePublicKey();
+            const stripe = stripePublicKey.startsWith('pk_') && !stripePublicKey.includes('replace_me')
+                ? Stripe(stripePublicKey)
+                : null;
+            let stripeElements = null;
+            let paymentElement = null;
+            // --- Logique de synchronisation entre onglets ---
+            window.addEventListener('storage', function(e) {
+                if (e.key === storageKey) {
+                    // Le panier a été modifié dans un autre onglet, on met à jour le contenu
+                    window.location.reload();
+                }
+            });
+
+            const paymentMethods = document.querySelectorAll('input[name="paymentMethod"]');
+            const creditCardForm = document.getElementById('creditCardForm');
+            const mobilePaymentForm = document.getElementById('mobilePaymentForm');
+
+            // --- Logique pour le résumé de la commande ---
+            const cart = JSON.parse(localStorage.getItem(storageKey) || '{}');
+            
+            const summaryList = document.getElementById('order-summary-list');
+            const cartItemCount = document.getElementById('cart-item-count');
+            const totalAmountEl = document.getElementById('total-amount');
+            const payButton = document.getElementById('pay-button');
+            const emptyCartMessage = document.getElementById('cart-empty-message');
+
+            function updatePaymentFields() {
+                const isCredit = document.getElementById('credit').checked;
+                document.getElementById('mobile-phone').required = !isCredit;
+                mobilePaymentForm.classList.toggle('d-none', isCredit);
+                creditCardForm.classList.toggle('d-none', !isCredit);
+
+                if (isCredit && stripe && !paymentElement) {
+                    stripeElements = stripe.elements();
+                    paymentElement = stripeElements.create('payment');
+                    paymentElement.mount('#payment-element');
+                }
+                if (isCredit && !stripe) {
+                    document.getElementById('payment-message').textContent = 'Stripe n’est pas configuré.';
+                }
+            }
+
+            paymentMethods.forEach((method) => method.addEventListener('change', updatePaymentFields));
+            updatePaymentFields();
+
+            let currentLang = localStorage.getItem('levelup_language') || 'fr';
+
+            const entries = Object.entries(cart);
+            let totalAmount = 0;
+            let totalItemsInCart = 0; // Pour le badge du panier dans la navbar
+
+            if (entries.length > 0) {
+                emptyCartMessage.style.display = 'none'; // Cache le message "panier vide"
+                let totalItems = 0;
+
+                entries.forEach(([name, item]) => {
+                    const li = document.createElement('li');
+                    li.className = 'list-group-item d-flex justify-content-between lh-sm';
+                    
+                    const itemTotal = item.qty * item.price; // Assurez-vous que item.price est un nombre
+                    totalAmount += itemTotal;
+                    totalItems += item.qty;
+
+                    li.innerHTML = `
+                        <div>
+                            <h6 class="my-0">${name}</h6>
+                            <small class="text-muted" data-i18n-key="quantityText">Quantité: ${item.qty} &times; $${item.price.toFixed(2)}</small>
+                        </div>
+                        <span class="text-muted">$${itemTotal.toFixed(2)}</span>
+                    `;
+                    summaryList.appendChild(li);
+                });
+                cartItemCount.textContent = totalItems;
+                totalAmountEl.textContent = `$${totalAmount.toFixed(2)}`;
+                totalItemsInCart = totalItems;
+            } else {
+                payButton.disabled = true;
+            }
+
+            // --- Logique pour la soumission du formulaire ---
+            const paymentForm = document.querySelector('.needs-validation');
+            let totalAmountForButton = 0; // Variab pou kenbe total la
+
+            if (entries.length > 0) {
+                totalAmountForButton = totalAmount; // Utiliser le total déjà calculé
+            }
+
+            paymentForm.addEventListener('submit', async function(event) {
+                event.preventDefault(); // Anpeche fòmilè a soumèt nòmalman
+                payButton.disabled = true;
+                payButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Pwosesis ankou...';
+                
+                if (!paymentForm.checkValidity()) {
+                    event.stopPropagation();
+                    paymentForm.classList.add('was-validated');
+                    payButton.disabled = false;
+                    payButton.textContent = `Payer $${totalAmountForButton.toFixed(2)} maintenant`;
+                    return; // Arrêter si le formulaire n'est pas valide
+                }
+                
+                const formData = {
+                    firstName: document.getElementById('firstName').value,
+                    lastName: document.getElementById('lastName').value,
+                    address: document.getElementById('address').value,
+                    phone: document.getElementById('phone').value,
+                    paymentMethod: document.querySelector('input[name="paymentMethod"]:checked').id,
+                    cart: cart
+                };
+
+                try {
+                    const response = await fetch(API_BASE('/api/process-payment'), {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(formData)
+                    });
+                    
+                    const result = await response.json(); // Attendre la réponse JSON
+
+                    if (result.success) {
+                        if (formData.paymentMethod === 'credit') {
+                            if (!stripe || !stripeElements || !result.paymentIntent?.clientSecret) {
+                                throw new Error('Stripe is not configured.');
+                            }
+                            const confirmation = await stripe.confirmPayment({
+                                elements: stripeElements,
+                                clientSecret: result.paymentIntent.clientSecret,
+                                redirect: 'if_required'
+                            });
+                            if (confirmation.error || confirmation.paymentIntent?.status !== 'succeeded') {
+                                throw new Error(confirmation.error?.message || 'Paiement non confirmé.');
+                            }
+                        }
+                        alert(`Siksè! ${result.message}\nID Komand ou a se: ${result.orderId}`);
+                        // Vide panye a apre komand la fin pase
+                        localStorage.removeItem(storageKey); 
+                        // Redirije itilizatè a sou paj akèy la oswa yon paj remèsiman
+                        window.location.href = 'assets/html/levelup.html';
+                    } else {
+                        alert(`Echèk: ${result.message}`);
+                        payButton.disabled = false;
+                        payButton.textContent = `Payer $${totalAmountForButton.toFixed(2)} maintenant`;
+                    }
+                } catch (error) {
+                    console.error('Erreur lors de la communication avec le serveur:', error);
+                    alert('Yon erè pwodui. Tanpri eseye ankò.');
+                    payButton.disabled = false;
+                    payButton.textContent = `Payer $${totalAmountForButton.toFixed(2)} maintenant`;
+                }
+            });
+
+            // Appliquer les traductions une fois que la page est prête
+            translatePage();
+        });
+
+        // --- Dark Mode Logic ---
+        // This logic assumes a toggle button with id="darkModeToggle" exists in the navbar
+        // or it will just apply the theme based on localStorage.
+        const body = document.body;
+        const darkModeKey = 'levelup_darkMode';
+
+        function applyDarkMode() {
+            const savedDarkMode = localStorage.getItem(darkModeKey);
+            if (savedDarkMode === 'enabled') {
+                body.classList.add('dark-mode');
+            } else {
+                body.classList.remove('dark-mode');
+            }
+        }
+        applyDarkMode();
+        window.addEventListener('storage', (e) => {
+            if (e.key === darkModeKey) applyDarkMode();
+        });
+
+
+        // --- Lojik Tradiksyon pou Paj Peman an ---
+        const translations = {
+            fr: {
+                navbar: {
+                    brand: "LEVEL-UP",
+                    accueil: "Accueil",
+                    produits: "Produits",
+                    contact: "Contact",
+                    panier: "Panier"
+                },
+                pageTitle: "Finaliser votre commande",
+                pageSubtitle: "Vérifiez votre commande et choisissez un mode de paiement.",
+                summaryTitle: "Résumé de la commande",
+                cartEmpty: "Votre panier est vide.",
+                totalLabel: "Total (USD)",
+                adresseLivraison: "Adresse de Livraison",
+                prenom: "Prénom",
+                prenomPlaceholder: "",
+                nom: "Nom",
+                nomPlaceholder: "",
+                adresse: "Adresse",
+                adressePlaceholder: "Adresse complète...",
+                telephone: "Téléphone",
+                telephonePlaceholder: "+509 XX XX XX XX",
+                methodePaiement: "Méthode de Paiement",
+                moncash: "MonCash",
+                natcash: "Natcash",
+                creditCard: "Carte de Crédit / Bancaire",
+                mobilePhoneLabel: "Numéro de téléphone pour le paiement",
+                mobilePhonePlaceholder: "+509 XX XX XX XX",
+                mobilePhoneHint: "Vous recevrez une notification sur ce téléphone.",
+                payerMaintenant: "Payer ${total}",
+                quantityText: "Quantité: ${qty} &times; $${price}",
+                accueilFooter: "Accueil",
+                commandezFooter: "Commandez",
+                panierFooter: "Panier",
+                contactFooter: "Contact",
+                aproposFooter: "À propos",
+                connexion: "Connexion"
+            },
+            ht: {
+                navbar: {
+                    brand: "LEVEL-UP",
+                    accueil: "Akèy",
+                    produits: "Pwodwi",
+                    contact: "Kontak",
+                    panier: "Panye",
+                    connexion: "Konekte"
+                },
+                pageTitle: "Finalize Kòmand Ou",
+                pageSubtitle: "Verifye kòmand ou epi chwazi yon metòd peman.",
+                summaryTitle: "Rezime Kòmand",
+                cartEmpty: "Panye ou vid.",
+                totalLabel: "Total (USD)",
+                adresseLivraison: "Adrès Livrezon",
+                prenom: "Prenon",
+                prenomPlaceholder: "",
+                nom: "Non",
+                nomPlaceholder: "",
+                adresse: "Adrès",
+                adressePlaceholder: "Adrès konplè...",
+                telephone: "Telefòn",
+                telephonePlaceholder: "+509 XX XX XX XX",
+                methodePaiement: "Metòd Peman",
+                moncash: "MonCash",
+                natcash: "Natcash",
+                creditCard: "Kat Kredi / Bankè",
+                mobilePhoneLabel: "Nimewo telefòn pou peman",
+                mobilePhonePlaceholder: "+509 XX XX XX XX",
+                mobilePhoneHint: "W ap resevwa yon notifikasyon sou telefòn sa.",
+                payerMaintenant: "Peye ${total}",
+                quantityText: "Kantite: ${qty} &times; $${price}",
+                accueilFooter: "Akèy",
+                commandezFooter: "Komande",
+                panierFooter: "Panye",
+                contactFooter: "Kontak",
+                aproposFooter: "A pwopo",
+                connexion: "Konekte"
+            },
+            en: {
+                navbar: { brand: "LEVEL-UP", accueil: "Home", produits: "Products", contact: "Contact", panier: "Cart" },
+                pageTitle: "Finalize Your Order",
+                pageSubtitle: "Review your order and choose a payment method.",
+                summaryTitle: "Order Summary",
+                cartEmpty: "Your cart is empty.",
+                totalLabel: "Total (USD)",
+                adresseLivraison: "Shipping Address",
+                prenom: "First Name",
+                nom: "Last Name",
+                adresse: "Address",
+                adressePlaceholder: "Full address...",
+                telephone: "Phone",
+                telephonePlaceholder: "+509 XX XX XX XX",
+                methodePaiement: "Payment Method",
+                moncash: "MonCash",
+                natcash: "Natcash",
+                creditCard: "Credit / Debit Card",
+                mobilePhoneLabel: "Phone number for payment",
+                mobilePhonePlaceholder: "+509 XX XX XX XX",
+                mobilePhoneHint: "You will receive a notification on this phone.",
+                payerMaintenant: "Pay ${total} now",
+                quantityText: "Quantity: ${qty} &times; $${price}",
+                accueilFooter: "Home",
+                commandezFooter: "Order",
+                panierFooter: "Cart",
+                contactFooter: "Contact",
+                aproposFooter: "About",
+                connexion: "Login"
+            },
+            es: {
+                navbar: { brand: "LEVEL-UP", accueil: "Inicio", produits: "Productos", contact: "Contacto", panier: "Carrito" },
+                pageTitle: "Finalizar su pedido",
+                pageSubtitle: "Revise su pedido y elija un método de pago.",
+                summaryTitle: "Resumen del pedido",
+                cartEmpty: "Su carrito está vacío.",
+                totalLabel: "Total (USD)",
+                adresseLivraison: "Dirección de Envío",
+                prenom: "Nombre",
+                nom: "Apellido",
+                adresse: "Dirección",
+                adressePlaceholder: "Dirección completa...",
+                telephone: "Teléfono",
+                methodePaiement: "Método de Pago",
+                moncash: "MonCash",
+                natcash: "Natcash",
+                creditCard: "Tarjeta de Crédito / Débito",
+                mobilePhoneLabel: "Número de teléfono para el pago",
+                mobilePhoneHint: "Recibirá una notificación en este teléfono.",
+                payerMaintenant: "Pagar ${total} ahora",
+                quantityText: "Cantidad: ${qty} &times; $${price}",
+                accueilFooter: "Akèy",
+                commandezFooter: "Komande",
+                panierFooter: "Panye",
+                contactFooter: "Kontak",
+                aproposFooter: "A pwopo",
+                connexion: "Iniciar Sesión"
+            }
+            // Ajoutez d'autres langues ici si nécessaire
+        };
+
+        function translatePage() {
+            const lang = localStorage.getItem('levelup_language') || 'fr'; // Langue par défaut
+            const t = translations[lang] || translations.fr;
+            if (!t) return;
+
+            const totalAmountEl = document.getElementById('total-amount');
+
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (t[key]) {
+                    element.textContent = t[key];
+                }
+            });
+            
+            // Translate navbar
+            const navbarPrefix = document.querySelector('[data-i18n-prefix="navbar"]');
+            if (navbarPrefix && t.navbar) {
+                navbarPrefix.querySelectorAll('[data-i18n]').forEach(el => {
+                    const key = el.getAttribute('data-i18n');
+                    if (t.navbar[key]) {
+                        // Handle special case for cart with icon
+                        if (key === 'panier') {
+                            el.innerHTML = `<i class="bi bi-cart-fill"></i> ${t.navbar[key]}`;
+                        } else {
+                            el.textContent = t.navbar[key];
+                        }
+                    }
+                });
+            }
+
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+                const key = element.getAttribute('data-i18n-placeholder');
+                if (t[key]) {
+                    element.placeholder = t[key];
+                }
+            });
+
+            document.querySelectorAll('[data-i18n-label]').forEach(element => {
+                const key = element.getAttribute('data-i18n-label');
+                const label = element.nextElementSibling; // Assuming label is next sibling
+                if (label && t[key]) {
+                    label.querySelector('span') ? label.querySelector('span').textContent = t[key] : label.textContent = t[key];
+                }
+            });
+
+            // Update button text with current total
+            const payButton = document.getElementById('pay-button');
+            if (payButton && totalAmountEl) {
+                payButton.textContent = t.payerMaintenant.replace('${total}', totalAmountEl.textContent);
+            }
+
+            // Translate dynamic cart items
+            document.querySelectorAll('[data-i18n-key="quantityText"]').forEach(element => {
+                const text = element.textContent;
+                const qtyMatch = text.match(/(\d+)/);
+                const priceMatch = text.match(/\$(\d+\.\d+)/);
+                if (qtyMatch && priceMatch && t.quantityText) {
+                    element.innerHTML = t.quantityText
+                        .replace('${qty}', qtyMatch[1])
+                        .replace('${price}', priceMatch[1]);
+                }
+            });
+
+            // Translate footer
+            document.querySelectorAll('[data-i18n-prefix="footer"] a').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (t.footer && t.footer[key]) el.textContent = t.footer[key];
+            }
+        )};
+
+        window.addEventListener('storage', (e) => {
+            if (e.key === 'levelup_language') {
+                translatePage();
+            }
+        });
+    </script>
+
+    <!-- =============================================================== -->
+    <!--                       Pied de Page (Footer)                       -->
+    <!-- =============================================================== -->
+    <div class="navbarcommandez container justify-content-center" data-i18n-prefix="footer">
+        <a href="assets/html/levelup.html" data-i18n="accueil">Accueil</a>
+        <a href="assets/html/Commandez.html" data-i18n="commandez">Commandez</a>
+        <a href="assets/html/contact.html" data-i18n="contact">Contact</a>
+        <a href="assets/html/Apropos.html" data-i18n="apropos">À propos</a>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,140 @@
+body {
+    min-height: 100vh;
+    background: #f4f1e9;
+    font-family: 'Poppins', sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar .levelup {
+    width: 38px;
+    height: 38px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #D4AF37;
+}
+
+.login-shell {
+    min-height: calc(100vh - 56px);
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+.login-card {
+    background-color: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 1.25rem;
+    overflow: hidden;
+}
+
+.logo-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid #D4AF37;
+}
+
+.navbar-brand-login {
+    text-decoration: none;
+    color: inherit;
+}
+
+.btn-primary-golden {
+    background-color: #D4AF37;
+    border-color: #D4AF37;
+    color: #fff;
+    font-weight: 700;
+    padding: 0.75rem;
+    transition: all 0.3s ease;
+}
+
+.btn-primary-golden:hover {
+    background-color: #b38f29;
+    border-color: #b38f29;
+    color: #fff;
+}
+
+.link-golden {
+    color: #b38f29;
+}
+
+.link-golden:hover {
+    color: #1a1a1a;
+}
+
+/* --- Dark Mode Styles --- */
+body.dark-mode {
+    background-color: #121212;
+    color: #e9ecef;
+}
+
+body.dark-mode .navbar {
+    border-bottom: 1px solid #D4AF37;
+}
+
+body.dark-mode .login-card {
+    background-color: #1f1f1f;
+    border-color: #444;
+    box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.4) !important;
+}
+
+body.dark-mode .card-body {
+    color: #e9ecef;
+}
+
+body.dark-mode .form-control {
+    background-color: #2a2a2a;
+    color: #f8f9fa;
+    border-color: #555;
+}
+
+body.dark-mode .form-control::placeholder {
+    color: #b5b9bf;
+}
+
+body.dark-mode .form-control:focus {
+    background-color: #2a2a2a;
+    color: #f8f9fa;
+    border-color: #d4af37;
+    box-shadow: 0 0 0 0.2rem rgba(212, 175, 55, 0.25);
+}
+
+body.dark-mode .form-label,
+body.dark-mode .form-check-label,
+body.dark-mode .text-muted,
+body.dark-mode .small {
+    color: #e9ecef !important;
+}
+
+body.dark-mode .form-check-input {
+    background-color: #333;
+    border-color: #666;
+}
+
+body.dark-mode .form-check-input:checked {
+    background-color: #D4AF37;
+    border-color: #D4AF37;
+}
+
+body.dark-mode .link-golden {
+    color: #D4AF37;
+}
+
+body.dark-mode .link-golden:hover {
+    color: #fff;
+}
+
+body.dark-mode .invalid-feedback {
+    color: #ffb4b4;
+}
+
+body.dark-mode .btn-primary-golden {
+    background-color: #D4AF37;
+    border-color: #D4AF37;
+    color: #111;
+}
+
+body.dark-mode .btn-primary-golden:hover {
+    background-color: #b38f29;
+    border-color: #b38f29;
+    color: #111;
+}

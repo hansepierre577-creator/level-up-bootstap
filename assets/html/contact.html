@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../lib/bootstrap-5.3.8-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../css/contact.css">
+    <link rel="stylesheet" href="../css/theme.css">
+</head>
+<body>
+    <button id="darkModeToggle" class="theme-toggle-floating btn btn-dark" type="button" aria-label="Activer le mode sombre" title="Mode sombre">
+        <i class="bi bi-moon-fill"></i>
+    </button>
+    <section class="contact py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-7" data-i18n-prefix="contactForm">
+                    <fieldset class="fieldset p-4 rounded shadow-sm bg-white">
+                        <legend class="fs-3 fw-bold" data-i18n="title">Contactez-nous</legend>
+                        <form action="https://wa.me/50940357607?" method="get" target="_blank">
+                            <label for="NOM" class="visually-hidden" data-i18n="nomLabel">Nom</label>
+                            <input type="text" placeholder="NOM" class="form-control mb-3" data-i18n-placeholder="nomPlaceholder">
+                            <label for="PRENOM" class="visually-hidden" data-i18n="prenomLabel">Prénom</label>
+                            <input type="text" placeholder="PRENOM" class="form-control mb-3" data-i18n-placeholder="prenomPlaceholder">
+                            <label for="TELEPHONE" class="visually-hidden" data-i18n="telephoneLabel">Téléphone</label>
+                            <input type="tel" placeholder="Telephone" class="form-control mb-3" data-i18n-placeholder="telephonePlaceholder">
+                            <label for="DATE" class="visually-hidden" data-i18n="dateLabel">Date</label>
+                            <input type="date" placeholder="Date" class="form-control mb-3" data-i18n-placeholder="datePlaceholder">
+                            <label for="ACCESSOIRES" class="visually-hidden" data-i18n="accessoiresLabel">Accessoires</label>
+                            <textarea placeholder="Accessoires" class="form-control mb-3" rows="4" data-i18n-placeholder="accessoiresPlaceholder"></textarea>
+                            <input class="submit btn btn-dark w-100" type="submit" value="Enregistrer" data-i18n-value="enregistrer">
+                        </form>
+                        <div class="location mt-4" data-i18n-prefix="location">
+                            <p><strong data-i18n="addressLabel">Adresse:</strong><span data-i18n="addressValue">Tabarre 23 Rue Valentin #33</span></p>
+                            <p><strong data-i18n="phoneLabel">Téléphone:</strong><span data-i18n="phoneValue">+509 40357607</span></p>
+                            <p><strong data-i18n="emailLabel">Email:</strong><span data-i18n="emailValue">hansepierre577@gmail.com</span></p>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="navbarcommandez container justify-content-center" data-i18n-prefix="footer">
+        <a href="levelup.html" data-i18n="accueil">Accueil</a>
+        <a href="Commandez.html" data-i18n="commandez">Commandez</a>
+        <a href="../../paiement.html" data-i18n="panier">Panier</a>
+        <a href="login.html" data-i18n="connexion">Connexion</a>
+        <a href="Apropos.html" data-i18n="apropos">À propos</a>
+    </div>
+
+    <script src="../js/theme.js"></script>
+    <script>
+        // --- Dark Mode Logic ---
+        const body = document.body;
+        const darkModeKey = 'levelup_darkMode';
+
+        function applyDarkMode() {
+            const savedDarkMode = localStorage.getItem(darkModeKey);
+            if (savedDarkMode === 'enabled') {
+                body.classList.add('dark-mode');
+            } else {
+                body.classList.remove('dark-mode');
+            }
+        }
+        applyDarkMode();
+        window.addEventListener('storage', (e) => {
+            if (e.key === darkModeKey) applyDarkMode();
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../lib/bootstrap-5.3.8-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../css/Commandez.css">
+    <link rel="stylesheet" href="../css/theme.css">
+</head>
+<body class="bg-page">
+    <button id="darkModeToggle" class="theme-toggle-floating btn btn-dark" type="button" aria-label="Activer le mode sombre" title="Mode sombre">
+        <i class="bi bi-moon-fill"></i>
+    </button>
+    
+    <div class="cart-widget" id="cart-widget">
+        <button id="cart-toggle" class="cart-toggle" type="button" aria-label="Ouvrir le panier">
+            <span class="cart-icon">🛒</span>
+            <span id="cart-count" class="cart-count">0</span>
+        </button>
+    </div>
+
+    <div class="cart-panel shadow-sm" id="cart-panel" aria-hidden="true">
+        <div class="cart-panel-header d-flex justify-content-between align-items-center">
+            <div>
+                <h2 data-i18n="cartTitle">Panier</h2>
+                <p class="small mb-0" data-i18n="cartSubtitle">Envoyez une seule commande sur WhatsApp.</p>
+            </div>
+            <button id="cart-close" class="btn-close" type="button" aria-label="Fermer le panier"></button>
+        </div>
+        <div class="d-flex justify-content-between align-items-center mt-3 mb-3">
+            <div><span data-i18n="articles">Articles</span> : <strong id="cart-items-count">0</strong></div>
+            <div class="d-flex gap-2 flex-wrap">
+                <button id="send-cart" class="btn btn-success btn-sm" type="button" disabled data-i18n="send">Envoyer</button>
+                <button id="clear-cart" class="btn btn-secondary btn-sm" type="button" disabled data-i18n="clear">Vider</button>
+            </div>
+        </div>
+        <div id="cart-empty" class="text-muted">Aucun article dans le panier.</div>
+        <ul id="cart-items" class="list-group mt-3"></ul>
+    </div>
+
+    <section id="Galerie" class="container py-5" data-i18n-prefix="products">
+        <h1 data-i18n="pageTitle">Nos Accessoires</h1>
+
+<div class="grid-container">
+<figure data-price="12">
+    <div class="encadrementimage">
+        <img src="../img/trousseencuirnoir.jpg" alt="Black leather pouch or organizer bag displayed against a neutral background" class="proprieteimage" data-i18n-alt="trousseCuirNoirAlt">
+    </div>
+<figcaption>Trousse En Cuir Noir</figcaption>
+<p class="product-price">$12.00</p> 
+<div class="button">
+<a href="https://wa.me/50940357607?">Commandez</a>
+</div>
+</figure>
+
+<figure data-price="12">
+<div class="encadrementimage">
+<img src="../img/troussecuirmarron.jpg" alt="Brown leather pouch or organizer bag displayed against a neutral background" class="proprieteimage" data-i18n-alt="trousseCuirMarronAlt">
+</div>
+    <figcaption>Trousse En Cuir Marron</figcaption>
+    <p class="product-price">$12.00</p>
+    <div class="button">
+<a href="https://wa.me/50940357607?">Commandez</a>
+
+    </div>
+</figure>
+
+
+<figure data-price="12">
+    <div class="encadrementimage">
+    <img src="../img/troussecuirgris.jpg" alt="Gray leather pouch or organizer bag displayed against a neutral background" class="proprieteimage" data-i18n-alt="trousseCuirGrisAlt">
+</div>
+    <figcaption>Trousse En Cuir Gris</figcaption>
+    <p class="product-price">$12.00</p>
+<div class="button">
+<a href="https://wa.me/50940357607?">Commandez</a>
+</div>
+</figure>
+
+<figure data-price="50">
+    <div class="encadrementimage">
+<img src="../img/jacket1.jpg" alt="Leather jacket displayed on a neutral background" class="proprieteimage" data-i18n-alt="jacket1Alt">
+</div>
+    <figcaption>Jacket 1</figcaption>
+    <p class="product-price">$50.00</p>
+    <div class="button">
+<a href="https://wa.me/50940357607?">Commandez</a>
+</div>
+</figure>
+
+
+
+<figure data-price="65">
+<div class="encadrementimage">
+    <img src="../img/jacketencuir.jpg" alt="Leather jacket in dark color displayed on a neutral background" class="proprieteimage" data-i18n-alt="jacketCuirAlt">
+    </div>
+    <figcaption>Jacket en cuir</figcaption>
+    <p class="product-price">$65.00</p>
+    <div class="button">
+<a href="https://wa.me/50940357607?">Commandez</a>
+</div>
+</figure>
+
+
+<figure data-price="60">
+
+<div class="encadrementimage">
+    <img src="../img/screengrab-20260223-113803.jpg" alt="Leather jacket displayed on a neutral background" class="proprieteimage" data-i18n-alt="jacketAlt">
+</div>
+    <figcaption></figcaption>
+    <p class="product-price">$60.00</p>
+    <div class="button">
+<a href="https://wa.me/50940357607?">Commandez</a>
+</div>
+</figure>
+
+<figure data-price="75">
+    <div class="encadrementimage">
+<img src="../img/style.jpg" alt="Style ensemble featuring coordinated accessories and apparel" class="proprieteimage" data-i18n-alt="styleAlt">
+    </div>
+    <figcaption>Style</figcaption>
+    <p class="product-price">$75.00</p>
+    <div class="button">
+<a href="https://wa.me/50940357607?">Commandez</a>
+</div>
+</figure>
+
+<figure data-price="35">
+    <div class="encadrementimage">
+<img src="../img/Classe3.jpg" alt="Black sunglasses displayed on a neutral background" class="proprieteimage" data-i18n-alt="comboAlt">
+    </div>
+    <figcaption>Combo</figcaption>
+    <p class="product-price">$35.00</p>
+    <div class="button">
+<a href="https://wa.me/50940357607?">Commandez</a>
+</div>
+</figure>
+<figure data-price="15">
+    <div class="encadrementimage">
+<img src="../img/lunette1.jpg" alt="Black sunglasses displayed on a neutral background" class="proprieteimage" data-i18n-alt="lunette1Alt">
+    </div>
+    <figcaption>Lunette 1</figcaption>
+    <p class="product-price">$15.00</p>
+    <div class="button">
+<a href="https://wa.me/50940357607?">Commandez</a>
+</div>
+</figure>
+
+<figure data-price="18">
+<div class="encadrementimage">
+    <img src="../img/lunette2.jpg" alt="Black pair of sunglasses displayed on a neutral background" class="proprieteimage" data-i18n-alt="lunette2Alt">
+</div>
+<figcaption>Lunette 2</figcaption>
+<p class="product-price">$18.00</p>
+<div class="button">
+<a href="https://wa.me/50940357607?">Commandez</a>
+</div>
+</figure>
+
+<figure data-price="20">
+<div class="encadrementimage">
+    <img src="../img/lunette3.jpg" alt="Black pair of sunglasses displayed on a neutral background" class="proprieteimage" data-i18n-alt="lunette3Alt">
+</div>
+<figcaption>Lunette 3</figcaption>
+<p class="product-price">$20.00</p>
+<div class="button">
+<a href="https://wa.me/50940357607?">Commandez</a>
+</div>
+</figure>
+
+<figure data-price="22">
+    <div class="encadrementimage">
+        <img src="../img/screengrab-20260223-114504.jpg" alt="Black wayfarer-style sunglasses displayed on a textured gray background, conveying a modern and sophisticated aesthetic" class="proprieteimage" data-i18n-alt="lunette4Alt">
+    </div>
+<figcaption>Lunette 3</figcaption>
+<p class="product-price">$22.00</p>
+<div class="button">
+<a href="https://wa.me/50940357607?">Commandez</a>
+</div>
+</figure>
+</div>
+    </section>
+    <div class="navbarcommandez container justify-content-center" data-i18n-prefix="footer">
+        <a href="levelup.html" data-i18n="accueil">Accueil</a>
+        <a href="contact.html" data-i18n="contact">Contact</a>
+        <a href="Apropos.html" data-i18n="apropos">À propos</a>
+        <a href="login.html" data-i18n="connexion">Connexion</a>
+        <a href="../../paiement.html" data-i18n="panier">Panier</a>
+    </div>
+
+<script src="../js/translations.js"></script>
+    <script src="../js/theme.js"></script>
+    <script>
+(function(){
+    const phone = '50940357607';
+    const storageKey = 'levelup_cart';
+    const cart = JSON.parse(localStorage.getItem(storageKey) || '{}');
+    const cartItemsEl = document.getElementById('cart-items');
+    const cartEmptyEl = document.getElementById('cart-empty');
+    const sendCartBtn = document.getElementById('send-cart');
+    const clearCartBtn = document.getElementById('clear-cart');
+    const cartCountEl = document.getElementById('cart-count');
+    let currentLang = localStorage.getItem('levelup_language') || 'fr';
+
+    function saveCart() {
+        localStorage.setItem(storageKey, JSON.stringify(cart));
+    }
+
+    function getProductInfo(link) {
+        const figure = link.closest('figure');
+        const title = figure?.querySelector('figcaption')?.textContent?.trim();
+        const price = parseFloat(figure?.dataset.price) || 0;
+        const name = title || figure?.querySelector('img')?.alt?.trim() || 'Produit';
+        return { name, price };
+    }
+
+    function renderCart() {
+        const entries = Object.entries(cart);
+        cartItemsEl.innerHTML = '';
+        const totalItems = entries.reduce((sum, [_, item]) => sum + item.qty, 0);
+        cartCountEl.textContent = totalItems;
+        document.getElementById('cart-items-count').textContent = totalItems;
+        sendCartBtn.disabled = entries.length === 0;
+        clearCartBtn.disabled = entries.length === 0;
+        if (entries.length === 0) {
+            cartEmptyEl.style.display = 'block';
+            return;
+        }
+        cartEmptyEl.style.display = 'none';
+        entries.forEach(([name, item]) => {
+            const li = document.createElement('li');
+            li.className = 'list-group-item d-flex justify-content-between align-items-center';
+            li.innerHTML = ` 
+                <span>${name} <strong>x${item.qty}</strong></span>
+                <button type="button" class="btn btn-sm btn-outline-danger remove-item">Supprimer</button>
+            `;
+            li.querySelector('.remove-item').addEventListener('click', () => {
+                delete cart[name];
+                saveCart();
+                renderCart();
+            });
+            cartItemsEl.appendChild(li);
+        });
+    }
+
+    function addToCart(productInfo, link) {
+        const { name, price } = productInfo;
+        if (cart[name]) {
+            cart[name].qty++;
+        } else {
+            cart[name] = { qty: 1, price: price };
+        }
+        saveCart();
+        renderCart();
+        if (link) {
+            link.textContent = (translations[currentLang] || translations.fr).addedToCart;
+            setTimeout(() => link.textContent = (translations[currentLang] || translations.fr).addToCart, 800);
+        }
+    }
+
+    function sendCart() {
+        const entries = Object.entries(cart);
+        if (!entries.length) return;
+        const lines = ['Bonjour, je souhaite commander :'];
+        let totalAmount = 0;
+        entries.forEach(([name, item]) => {
+            const itemTotal = item.qty * item.price;
+            lines.push(`- ${name} (x${item.qty}) : $${itemTotal.toFixed(2)}`);
+            lines.push(`- ${name} (x${item.qty}) : ${itemTotal}$`);
+            totalAmount += itemTotal;
+        });
+        lines.push('');
+        lines.push(`Total de la commande : ${totalAmount}$`);
+        lines.push('', 'Merci.');
+        const url = `https://wa.me/${phone}?text=${encodeURIComponent(lines.join('\n'))}`;
+        window.open(url, '_blank');
+    }
+
+    const cartToggle = document.getElementById('cart-toggle');
+    const cartClose = document.getElementById('cart-close');
+    const cartPanel = document.getElementById('cart-panel');
+
+    function openCart() {
+        cartPanel.classList.add('cart-open');
+        cartPanel.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeCart() {
+        cartPanel.classList.remove('cart-open');
+        cartPanel.setAttribute('aria-hidden', 'true');
+    }
+
+    cartToggle.addEventListener('click', openCart);
+    cartClose.addEventListener('click', closeCart);
+    sendCartBtn.addEventListener('click', sendCart);
+    clearCartBtn.addEventListener('click', () => { 
+        Object.keys(cart).forEach(key => delete cart[key]);
+        saveCart();
+        renderCart();
+    });
+
+    document.querySelectorAll('.button a[href*="wa.me"]').forEach(link => {
+        link.textContent = 'Ajouter au panier';
+        link.addEventListener('click', event => {
+            event.preventDefault();
+            const productInfo = getProductInfo(event.currentTarget);
+            addToCart(productInfo, event.currentTarget);
+        });
+    });
+
+    renderCart();
+
+    // --- Dark Mode Logic ---
+    // This logic assumes a toggle button with id="darkModeToggle" exists somewhere on the page
+    // or it will just apply the theme based on localStorage.
+    const body = document.body;
+    const darkModeKey = 'levelup_darkMode';
+
+    function applyDarkMode() {
+        const savedDarkMode = localStorage.getItem(darkModeKey);
+        if (savedDarkMode === 'enabled') {
+            body.classList.add('dark-mode');
+        } else {
+            body.classList.remove('dark-mode');
+        }
+    }
+    applyDarkMode();
+    window.addEventListener('storage', (e) => {
+        if (e.key === darkModeKey) applyDarkMode();
+    });
+
+})();
+</script>
+</body>
+</html>
