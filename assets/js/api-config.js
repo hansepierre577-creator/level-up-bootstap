@@ -4,7 +4,7 @@
   // Set LEVELUP_API_BASE_URL in the page before this file for a separately
   // deployed Worker (for example, https://level-up-api.<account>.workers.dev).
   const defaultBase = window.LEVELUP_API_BASE_URL
-    || (isLocal ? 'http://localhost:8787' : 'https://level-up-api.hansepierre577.workers.dev');
+    || (isLocal ? 'http://localhost:8787' : 'https://level-up-bootstap.hansepierre577.workers.dev');
   const stripeKey = 'levelup_stripe_public_key';
   const defaultStripePublicKey = window.LEVELUP_STRIPE_PUBLIC_KEY || 'pk_test_replace_me';
 
