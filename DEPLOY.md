@@ -1,67 +1,60 @@
-# Deployment: GitHub + Netlify + Render
+# Deployment: Cloudflare Pages + Workers
 
-The production setup uses:
+The static site is deployed to Cloudflare Pages and the API is deployed as the
+native-fetch Worker in `worker/index.js`. Supabase remains the database/auth
+provider and Stripe remains the payment provider.
 
-- GitHub (`hansepierre577-creator/level-up-bootstap`) for source control.
-- Netlify for the static frontend.
-- Render for the Express API in `server.js`.
-- Supabase for the database and authentication.
-- Stripe for card payments.
+## Setup
 
-## One-time setup
-
-1. Push this repository to the `main` branch on GitHub.
-2. In Supabase SQL Editor, run [supabase/schema.sql](./supabase/schema.sql)
-   before accepting production traffic. It enables RLS and blocks customers
-   from changing roles, orders, payment state, or order items directly.
-3. In Render, choose **New > Blueprint**, select this GitHub repository, and
-   deploy the `render.yaml` service.
-4. Add every `sync: false` value requested by Render. Generate a unique
-   `JWT_SECRET` with:
+1. Run `supabase/schema.sql` in the Supabase SQL editor.
+2. Install and authenticate Wrangler:
 
    ```powershell
-   node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
+   npm install
+   npx wrangler login
    ```
 
-5. In Netlify, choose **Add new site > Import an existing project**, select
-   the same GitHub repository, and set:
-   - Build command: empty
-   - Publish directory: `.`
-   - Production branch: `main`
-6. Keep the Render URL in `netlify.toml` as
-   `https://level-up-api.onrender.com`, or replace it with the actual Render
-   URL if Render assigns a different hostname.
-7. In Render, set `ALLOWED_ORIGINS` to the exact Netlify URL, for example
-   `https://your-site.netlify.app`. Include the custom domain too if you add
-   one.
-8. Configure the Stripe webhook at
-   `<render-url>/api/stripe/webhook` and save its signing secret in Render.
-9. Use matching Stripe modes: `pk_test` with `sk_test`, or `pk_live` with
-   `sk_live`. Never put a secret key in frontend files or GitHub.
+3. Create Worker secrets. Enter each value when prompted; never commit them:
 
-## Automatic deployments
+   ```powershell
+   npx wrangler secret put JWT_SECRET
+   npx wrangler secret put SUPABASE_URL
+   npx wrangler secret put SUPABASE_ANON_KEY
+   npx wrangler secret put SUPABASE_SERVICE_ROLE_KEY
+   npx wrangler secret put STRIPE_SECRET_KEY
+   npx wrangler secret put STRIPE_WEBHOOK_SECRET
+   npx wrangler secret put ALLOWED_ORIGINS
+   ```
 
-After Netlify and Render are connected to GitHub, every push to `main` will:
+   `JWT_SECRET` must be at least 64 random characters. Generate one with
+   `node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"`.
+   `ALLOWED_ORIGINS` is a comma-separated list of exact Pages/custom domains.
+   `STRIPE_PUBLIC_KEY` is only a browser value and must never be a Worker
+   secret or be confused with `STRIPE_SECRET_KEY`.
 
-- run the GitHub Actions validation workflow;
-- redeploy the frontend on Netlify;
-- redeploy the API on Render.
+4. Deploy the API:
 
-Use:
+   ```powershell
+   npm run deploy:worker
+   ```
 
-```powershell
-git add .
-git commit -m "Describe the change"
-git push origin main
-```
+5. Create a Cloudflare Pages project from this repository. Use an empty build
+   command and `.` as the publish directory.
+6. Before `assets/js/api-config.js` loads, define
+   `window.LEVELUP_API_BASE_URL` as the deployed Worker URL (or call
+   `LEVELUP_API.setBaseUrl` during local setup). Local development defaults to
+   `http://localhost:8787`.
+7. Configure Stripe to send events to
+   `<worker-url>/api/stripe/webhook`. Use matching test/live key modes.
 
-Netlify and Render may take a few minutes to finish each deployment.
+## Verification
 
-## Pre-launch checks
+- `npm run check`
+- `https://<worker-url>/api/health`
+- Register, login, `/api/auth/me`, order creation, admin order access, and a
+  Stripe test payment/webhook.
+- Confirm Supabase RLS is enabled and `.env` is not tracked.
 
-- Open `https://<netlify-site>/` and confirm the Level-Up homepage loads.
-- Open `https://<render-service>/api/health` and confirm the API responds.
-- Confirm `/api/auth/login` is routed through the Netlify site.
-- Test registration, login, order creation, and Stripe test payment.
-- Confirm the Supabase RLS policies were applied successfully.
-- Confirm `.env` is not tracked. The repository `.gitignore` already excludes it.
+The Worker preserves the Express API paths and uses Web Crypto for JWT signing
+and Stripe webhook HMAC verification. The service-role key is used only
+server-side.

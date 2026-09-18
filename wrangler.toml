@@ -1,0 +1,8 @@
+name = "level-up-api"
+main = "worker/index.js"
+compatibility_date = "2026-09-18"
+
+[vars]
+NODE_ENV = "production"
+
+# Set secrets with: npx wrangler secret put SECRET_NAME

@@ -16,12 +16,6 @@
   status = 200
 
 [[redirects]]
-  from = "/api/*"
-  to = "https://level-up-api.onrender.com/api/:splat"
-  status = 200
-  force = true
-
-[[redirects]]
   from = "/server.js"
   to = "/404.html"
   status = 404

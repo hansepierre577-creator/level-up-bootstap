@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node --watch server.js",
-    "check": "node --check server.js"
+    "check": "node --check server.js && node --check worker/index.js",
+    "deploy:worker": "wrangler deploy"
   },
   "keywords": [
     "level-up",
@@ -27,6 +28,7 @@
     "express-rate-limit": "^7.5.0",
     "helmet": "^8.1.0",
     "jsonwebtoken": "^9.0.2",
-    "stripe": "^16.9.0"
+    "stripe": "^16.9.0",
+    "wrangler": "^4.37.0"
   }
 }
