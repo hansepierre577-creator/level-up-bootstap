@@ -6,7 +6,7 @@
   const defaultBase = window.LEVELUP_API_BASE_URL
     || (isLocal ? 'http://localhost:8787' : 'https://level-up-api.hansepierre577.workers.dev');
   const stripeKey = 'levelup_stripe_public_key';
-  const defaultStripePublicKey = window.LEVELUP_STRIPE_PUBLIC_KEY || 'pk_test_replace_me';
+  const defaultStripePublicKey = window.LEVELUP_STRIPE_PUBLIC_KEY || 'pk_live_51U57pzQxMto0cBef5D8oqM82rw8ArIVUqFr5JQKTZFWXuxSnEqLO97OvVRoQsPYSXUMz4SzTMvOeWqA69WfUwQAi00X1yeUZFI';
 
   function getBaseUrl() {
     const stored = localStorage.getItem(baseKey);
